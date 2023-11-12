@@ -323,7 +323,9 @@ class Unit:
             color = (255, 0, 0)  
         elif self.name == 'Mythe Raiding Party':
             color = (255, 255, 0)  # Tomato Orange
-        elif self.name == 'Xetta Trained Regular':
+        elif self.name == 'Haax Jet':
+            color = (25, 25, 255)  # Tomato Orange
+        elif self.name == 'Xetta Trained Regulars':
             color = (15, 0, 55)  # Dark Orange
         elif self.name == 'Royal Combat Engineer':
                 color = (200, 0, 0)  # Cobalt Blue
@@ -456,9 +458,9 @@ class Tile:
                     units.append(rebelMilita)
 
                 else:    
-                    rebelMilita = Unit(self.x, self.y, self.x, self.y,'Mythe Regulars', 'Border' ,'Mythe', 1, 100, 1, 40, 30, 160, 600, 1, 'Roam', False,False, 0,0,0,100,False)
+                    rebelMilita = Unit(self.x, self.y, self.x, self.y,'Mythe Regulars', 'Border' ,'Mythe', 1, 100, 1, 40, 30, 160, 800, 1, 'Roam', False,False, 0,0,0,100,False)
                     units.append(rebelMilita)
-                    rebelMilita2 = Unit(self.x, self.y, self.x, self.y,'Red Flower Centuria', 'Border' ,'Mythe', 1, 100, 1, 100, 50, 200, 600, 1, 'Roam', False,False, 0,0,0,1000,True)
+                    rebelMilita2 = Unit(self.x, self.y, self.x, self.y,'Red Flower Centuria', 'Border' ,'Mythe', 1, 100, 1, 100, 50, 200, 800, 1, 'Roam', False,False, 0,0,0,1000,True)
                     units.append(rebelMilita2)
                 
                 #units.append(HazelRRF)
@@ -553,7 +555,7 @@ class Tile:
                 if unitChance < 6 and HazelMoney >= 1:
                     HazelMoney = HazelMoney - 1
                     #self,x, y,startX, startY,name,uType,faction, cost, population, tech, speed, attack, defense, attackRange,digIn, tactic, engaged,hasTarget,targetX, targetY, currentMissionTime, maxMissionTime
-                    for i in range(3):
+                    for i in range(2):
                         HazelV = Unit(self.x, self.y, self.x, self.y,'Hazel Regulars', 'Milita' ,'Hazel', 1, 100, 1, 50, 50, 100, 100, 1, 'Roam', False,False, 0, 0, 0, 100,True)
                         units.append(HazelV)
                         HazelV2 = Unit(self.x, self.y, self.x, self.y,'Hazel Milita', 'Milita' ,'Hazel', 1, 20, 1, 5, 5, 10, 10, 1, 'Roam', False,False, 0, 0, 0, 100,False)
@@ -569,7 +571,7 @@ class Tile:
                     HazelMoney = HazelMoney - 1
 
                     if time > hazelSupport:
-                        for i in range(6):
+                        for i in range(5):
                             HazelV = Unit(self.x, self.y, self.x, self.y,'Moonglaven Regular', 'Border' ,'Hazel', 1, 100, 1, 50, 80, 120, 700, 1, 'Roam', False,False, 0, 0, 0, 100,False)
                             units.append(HazelV)
                         for i in range(2):
@@ -590,11 +592,11 @@ class Tile:
             elif self.control <= 3:
                 if unitChance < 6 and MytheMoney >= 1:
                     MytheMoney = MytheMoney - 1
-                    for i in range(8):
+                    for i in range(3):
                         rebelMilita = Unit(self.x, self.y, self.x, self.y,'Mythe Irregulars', 'Milita' ,'Mythe', 1, 30, 1, 1, 1, 60, 10, 1, 'Roam', False,False, 0,0,0,100,False)
                         units.append(rebelMilita)
-                    for i in range(3):
-                        rebelMilita = Unit(self.x, self.y, self.x, self.y,'Red Flower Centuria', 'Border' ,'Mythe', 1, 100, 1, 100, 50, 200, 600, 1, 'Roam', False,False, 0,0,0,1000,True)
+                    for i in range(4):
+                        rebelMilita = Unit(self.x, self.y, self.x, self.y,'Red Flower Centuria', 'Border' ,'Mythe', 1, 100, 1, 100, 50, 200, 800, 1, 'Roam', False,False, 0,0,0,1000,True)
                         units.append(rebelMilita)
                     dandyRRF = Unit(self.x, self.y, self.x, self.y,'Royal Combat Engineer', 'Builder' ,'Mythe', 1, 100, 10, 1, 1, 1, 1, 1, 'Roam', False,False, 0, 0, 0, 500, False)
                     units.append(dandyRRF)
@@ -602,8 +604,8 @@ class Tile:
 
                 if unitChance > 15 and unitChance < 20 and MytheMoney >= 1:
                     MytheMoney = MytheMoney - 1
-                    for i in range(2):
-                        rebelMilita = Unit(self.x, self.y, self.x, self.y,'Mythe Regulars', 'Border' ,'Mythe', 1, 60, 1, 40, 30, 160, 600, 1, 'Roam', False,False, 0,0,0,100,False)
+                    for i in range(5):
+                        rebelMilita = Unit(self.x, self.y, self.x, self.y,'Mythe Regulars', 'Border' ,'Mythe', 1, 60, 1, 40, 30, 160, 800, 1, 'Roam', False,False, 0,0,0,100,False)
                         units.append(rebelMilita)
 
                     if time > mytheSupport:
