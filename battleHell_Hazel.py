@@ -607,7 +607,7 @@ class Tile:
                         units.append(rebelMilita)
 
                     if time > mytheSupport:
-                        HazelV = Unit(self.x, self.y, self.x, self.y,'Xetta Trained Regulars', 'Border' ,'Mythe', 1, 100, 1, 80, 120, 120, 700, 1, 'Roam', False,False, 0, 0, 0, 500,False)
+                        HazelV = Unit(self.x, self.y, self.x, self.y,'Xetta Trained Regulars', 'Border' ,'Mythe', 1, 100, 1, 80, 92, 120, 700, 1, 'Roam', False,False, 0, 0, 0, 500,False)
                         units.append(HazelV)
                         
                         XettaV = Unit(self.x, self.y, self.x, self.y,'Haax Jet', 'Aircraft' ,'Mythe', 1, 30, 1, 150, 80, 100, 500, 1, 'Roam', False,False, 0, 0, 0, 700,False)
