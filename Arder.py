@@ -427,7 +427,7 @@ class Tile:
 
         
 
-        cityChance = random.randint(1,15)
+        cityChance = random.randint(1,25)
        
             
         if cityChance == 1:
@@ -459,7 +459,7 @@ class Tile:
                 
         elif x <=550:
             rebelChance = random.randint(1,10)
-            unitChance = random.randint(1,15)
+            unitChance = random.randint(1,9)
             if unitChance == 1:
                 #self,x, y,startX, startY,name,uType,faction, cost, population, tech, speed, attack, defense, attackRange,digIn
                 #self,x, y,startX, startY,name,uType,faction, cost, population, tech, speed, attack, defense, attackRange,digIn, tactic, engaged,hasTarget,targetX, targetY, currentMissionTime, maxMissionTime
@@ -556,6 +556,10 @@ class Tile:
         if self.control > 3 and self.control < 7:
             self.hasFort = False
         addMoneyChance = random.randint(1,90000)
+        if self.control <= 3:
+            addMoneyChance = random.randint(1,90000*(TUCMoney+1))
+        if self.control >= 7:
+            addMoneyChance = random.randint(1,90000*(ArderMoney+1))
         if addMoneyChance == 1:
             if self.control <= 3:
                 TUCMoney = TUCMoney + self.population
@@ -564,16 +568,16 @@ class Tile:
         buyUnitChance = random.randint(1,100)
         if buyUnitChance == 1 and self.population >= 20:
             unitChance = random.randint(1,30)
-            
+            print (maxArderUnits)
             if self.control >= 7 and arderUnits < maxArderUnits:
                 if unitChance < 6 and ArderMoney >= 1:
                     ArderMoney = ArderMoney - 1
                     #self,x, y,startX, startY,name,uType,faction, cost, population, tech, speed, attack, defense, attackRange,digIn, tactic, engaged,hasTarget,targetX, targetY, currentMissionTime, maxMissionTime
-                    for i in range(2):
+                    for i in range(1):
                         ArderV2 = Unit(self.x, self.y, self.x, self.y,'Arder Folk Milita', 'Milita' ,'Arder', 1, 20, 1, 5, 5, 10, 10, 1, 'Roam', False,False, 0, 0, 0, 100,False)
                         units.append(ArderV2)
-                        dandyRRF = Unit(self.x, self.y, self.x, self.y,'Arder Combat Engineer', 'Builder' ,'Arder', 1, 1, 100, 150, 1, 1, 1000, 1, 'Roam', False,False, 0, 0, 0, 50, False)
-                        units.append(dandyRRF)
+                    dandyRRF = Unit(self.x, self.y, self.x, self.y,'Arder Combat Engineer', 'Builder' ,'Arder', 1, 1, 100, 150, 1, 1, 1000, 1, 'Roam', False,False, 0, 0, 0, 50, False)
+                    units.append(dandyRRF)
 
 
                     for i in range(1):
@@ -587,6 +591,12 @@ class Tile:
                         else:
                             ArderV = Unit(self.x, self.y, self.x, self.y,'Arder Regulars', 'Milita' ,'Arder', 1, 100, 1, 50, 50, 100, 100, 1, 'Roam', False,False, 0, 0, 0, 100,True)
                             units.append(ArderV)
+                            unitChance = random.randint(1,3)
+                            if unitChance == 1:
+                                ArderV = Unit(self.x, self.y, self.x, self.y,'Arder Regulars', 'Milita' ,'Arder', 1, 100, 1, 50, 50, 100, 100, 1, 'Roam', False,False, 0, 0, 0, 100,True)
+                                units.append(ArderV)
+                                
+
                        
                 elif unitChance > 26 and ArderMoney >= 1:
                     ArderMoney = ArderMoney - 1
@@ -611,7 +621,7 @@ class Tile:
             elif self.control <= 3 and TUCUnits < maxTUCUnits:
                 if unitChance < 6 and TUCMoney >= 1:
                     TUCMoney = TUCMoney - 1
-                    for i in range(2):
+                    for i in range(4):
                         rebelMilita = Unit(self.x, self.y, self.x, self.y,'TUC Irregulars', 'Milita' ,'TUC', 1, 30, 1, 1, 1, 60, 10, 1, 'Roam', False,False, 0,0,0,100,False)
                         units.append(rebelMilita)
              
@@ -621,7 +631,7 @@ class Tile:
 
                 if unitChance > 15 and unitChance < 20 and TUCMoney >= 1:
                     TUCMoney = TUCMoney - 1
-                    for i in range(5):
+                    for i in range(2):
                         rebelMilita = Unit(self.x, self.y, self.x, self.y,'TUC Regulars', 'Border' ,'TUC', 1, 60, 1, 40, 30, 160, 800, 1, 'Roam', False,False, 0,0,0,100,False)
                         units.append(rebelMilita)
 
@@ -637,7 +647,7 @@ class Tile:
                 if unitChance > 25 and TUCMoney >= 1:
                     TUCMoney = TUCMoney - 1
                     
-                    for i in range(2):
+                    for i in range(1):
                         rebelMilita = Unit(self.x, self.y, self.x, self.y,'TUC Recon Party', 'Aircraft' ,'TUC', 1, 30, 1, 20, 1, 60, 400, 1, 'Roam', False,False, 0,0,0,100,False)
                         units.append(rebelMilita)
                   
@@ -713,8 +723,8 @@ while True:
     
     mx, my = pygame.mouse.get_pos()
     #print(str(mx))
-    arderMaxUnits = 10
-    TUCMaxUnits = 10
+    maxArderUnits = 10
+    maxTUCUnits = 10
     TUCUnits = 0
     arderUnits = 0
     unitsInTile = []
@@ -735,9 +745,9 @@ while True:
         for tile in mapList:
             if tile.population == 20:
                 if tile.control >= 50:
-                    arderMaxUnits = arderMaxUnits + 1
+                    maxArderUnits = maxArderUnits + 1.5
                 else:
-                    TUCMaxUnits = TUCMaxUnits + 1
+                    maxTUCUnits = maxTUCUnits + 1.5
                 
             ci = ci+1
             if tile.control < 7:
@@ -748,8 +758,8 @@ while True:
             tileHist[ci] = [bT,xT]
             tile.takeTurn()
         
-        print ('Total Arder Units: ' + str(arderUnits) + 'Arder Max Units: ' + str(arderMaxUnits))
-        print ('Total TUC Units: ' + str(TUCUnits) +'TUC Max Units: ' + str(TUCMaxUnits))
+        #print ('Total Arder Units: ' + str(arderUnits) + 'Arder Max Units: ' + str(arderMaxUnits))
+        #print ('Total TUC Units: ' + str(TUCUnits) +'TUC Max Units: ' + str(TUCMaxUnits))
         time = time+1
         mudTimer = mudTimer - random.randint(1,2)
         if mudTimer < 0:
@@ -760,8 +770,8 @@ while True:
     display.fill((24,164,86))
     pygame.draw.rect(display, (0,0,25), (0,0,1300,1200))
 
-    ArderULabel = myFont.render('Total Arder Units: ' + str(arderUnits) + ' :: Arder Max Units: ' + str(arderMaxUnits), 1, (255,255,255))
-    TUCULabel = myFont.render('Total TUC Units: ' + str(TUCUnits) +' :: TUC Max Units: ' + str(TUCMaxUnits), 1, (255,255,255))
+    ArderULabel = myFont.render('Total Arder Units: ' + str(arderUnits) + ' :: Arder Max Units: ' + str(maxArderUnits), 1, (255,255,255))
+    TUCULabel = myFont.render('Total TUC Units: ' + str(TUCUnits) +' :: TUC Max Units: ' + str(maxTUCUnits), 1, (255,255,255))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -783,9 +793,9 @@ while True:
         #print(unit.name)
         counter = counter+1
         if unit.faction == 'Arder':
-            color= (0,255,0)
+            color= (255,0,0)
         else:
-            color = (255,0,0)
+            color = (255,165,0)
             
         nameLabel = myFont.render(str(unit.name) + '-' +str(unit.population), 1, color)
         display.blit(nameLabel, (1050, 40*counter))
